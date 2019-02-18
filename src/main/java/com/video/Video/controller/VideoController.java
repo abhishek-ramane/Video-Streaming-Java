@@ -2,8 +2,10 @@ package com.video.Video.controller;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 
 import com.video.Video.entity.Video;
+import com.video.Video.model.VideoWithoutContent;
 import com.video.Video.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -47,6 +49,12 @@ public class VideoController {
 				stream.write(file_content, from, from + to);
 			}
 		};
+	}
+
+	@CrossOrigin("http://localhost:4200")
+	@GetMapping("/allVideo")
+	public List<VideoWithoutContent> getVideoList(){
+		return service.getAllVideoWithoutContent();
 	}
 
 	@GetMapping("/upload/test")
